@@ -1,0 +1,382 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+
+header{
+    height: 80px;
+    display: flex;
+    flex-wrap:nowrap;
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(124, 121, 121);
+    box-shadow: #282727;
+}
+
+.left_corner{
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+}
+
+#icon img{
+    height: 70px;
+    width: 70px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+}
+
+#name{
+    font-size: 1.25rem;
+    font-family: "Cormorant Garamond", serif;
+    text-transform: capitalize;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+#extra{
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    letter-spacing: 0.1em;
+}
+
+#header_search_box{
+    display: flex;
+    max-width: 500px;
+    min-width: 0;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+
+#header_search_box IMG{
+    background-color: #282727;
+    height: 30px;
+    width: 30px;
+    border:1px solid grey;
+    border-right: none;
+    border-radius: 5px 0PX 0PX 5px;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+.search_bar{
+    font-family: Manrope, sans-serif;
+    background-color: #282727;
+    flex-grow: 1;
+    height: 30px;
+    width: 350px;
+    border:1px solid grey;
+    border-left: none;
+    border-radius: 0px 5px 5px 0px ;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 0.1rem;
+    margin-left: 0px;
+    color: white;
+}
+
+/* .saved_button{
+    height: 30px;
+    margin-top: 26px;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+#saved{
+    height: 26px;
+    max-width: 100px;
+    min-width: 0px;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    border: 1px solid grey;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    letter-spacing: 0.1rem;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 5px ;
+}
+
+#saved:hover{
+    background-color: aliceblue;
+    color: #282727;
+} */
+
+.filter_container{
+    height: 50px;
+    background-color: #1a1919;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: capitalize;
+    letter-spacing: 0.2rem;
+}
+
+#filter{
+    margin-left: 20px;
+}
+
+.filter_container button{
+      text-transform: capitalize;
+      height: 30px;
+      width: 70px;
+      float: left;
+      background-color: #282727;
+      color: #fff;
+      border: 0.2px solid #4f4f4f;
+      border-radius: 4px;
+}
+
+
+#all, #nature, #sunset, #family, #baby, #selfie{
+    margin: 10px 20px;
+}
+
+.filter_container button:hover{
+    border: 1px solid #ffff;
+    font-weight: 600;
+    transition: ease-in-out;
+}
+
+.gallery_container{
+    column-count: 5;
+    column-gap: 20px;
+    padding: 20px;
+}
+
+.image-card{
+    break-inside: avoid;
+    margin-bottom: 20px;
+}
+
+.image-card img{
+    width: 100%;
+    height: auto;
+    transition: 0.5s;
+    display: block;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.image-card img:hover{
+    transform: scale(1.08);
+}
+
+.lightbox{
+    position: fixed;
+    top: 160px; /* Height of header + filter section */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 160px);
+
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.lightbox.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img{
+    max-width: 90%;
+    max-height: 90%;
+
+    border-radius: 20px;
+
+    object-fit: contain;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.close-btn{
+    position: absolute;
+    top: 30px;
+    right: 40px;
+
+    font-size: 3rem;
+    color: white;
+
+    cursor: pointer;
+}
+
+.zoom-in,
+.zoom-out{
+    position: absolute;
+
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.2);
+
+    color: white;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.zoom-in:hover,
+.zoom-out:hover{
+    background: rgba(255,255,255,0.4);
+}
+
+.zoom-in{
+    bottom: 100px;
+}
+
+.zoom-out{
+    bottom: 40px;
+}
+
+.lightbox img{
+    transition: transform 0.3s ease;
+}
+
+.lightbox img {
+    z-index: 1;
+}
+
+.prev-btn,
+.next-btn,
+.zoom-in,
+.zoom-out,
+.close-btn {
+
+    z-index: 100;
+
+}
+
+.prev-btn,
+.next-btn,
+.zoom-in,
+.zoom-out {
+
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.prev-btn:hover,
+.next-btn:hover,
+.zoom-in:hover,
+.zoom-out:hover {
+
+    transform: scale(1.1);
+
+    background: rgba(255,255,255,0.15);
+
+}
+
+.prev-btn {
+
+    left: 40px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+}
+
+.next-btn {
+
+    right: 40px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+}
+
+.zoom-controls {
+
+    position: absolute;
+
+    bottom: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 15px;
+
+}
+
+footer{
+    height: 80px;
+     border-top: 1px solid rgb(124, 121, 121);
+    box-shadow: #282727;
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-content {
+    max-width: 1500px;
+    margin: 0 auto;
+
+   
+
+    font-family: monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+
+    color: rgba(255, 255, 255, 0.4);
+}
+
